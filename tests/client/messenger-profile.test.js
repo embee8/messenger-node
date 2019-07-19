@@ -6,7 +6,7 @@ describe('Messenger Profile API', () => {
 
   // doesn't include payament_settings since that can't be updated yet
   let fields = {
-    'whitelisted_domains': ['https://www.messenger.com'],    
+    'whitelisted_domains': ['https://www.messenger.com'],
     'get_started': {
       'payload': 'callback_payload'
     },
@@ -18,7 +18,7 @@ describe('Messenger Profile API', () => {
         'locale':'en_US',
         'text':'Timeless apparel for the masses.'
       }
-    ],    
+    ],
     'target_audience': {
       'audience_type':'custom',
       'countries':{
@@ -66,15 +66,15 @@ describe('Messenger Profile API', () => {
     });
   });
 
-  test('Get profile fields', done => {      
+  test('Get profile fields', done => {
     [null, fields_arr].forEach(field_list => {
       Client.getMessengerProfile(field_list).then(res => {
         let keys = Object.keys(res.data[0]);
         expect(res).toHaveProperty('data');
-        expect(keys).toEqual(expect.arrayContaining(fields_arr));        
+        expect(keys).toEqual(expect.arrayContaining(fields_arr));
         done();
       });
-    });  
+    });
   });
 
   test('Delete profile fields', done => {
@@ -84,5 +84,5 @@ describe('Messenger Profile API', () => {
       done();
     }).catch(e => console.log(JSON.stringify(e)));
   });
-  
+
 });

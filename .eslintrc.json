@@ -8,6 +8,10 @@
     "parserOptions": { "ecmaVersion": 2017 },
     "extends": "eslint:recommended",
     "rules": {
+        "eol-last": [
+            "error",
+            "always"
+        ],
         "indent": [
             2,
             2,
@@ -17,6 +21,14 @@
             "error",
             "unix"
         ],
+        "no-console": [
+            "error", 
+            { "allow": ["log", "error"] }
+        ],
+        "no-trailing-spaces": [
+            "error",
+            { "ignoreComments": true }
+        ],
         "quotes": [
             "error",
             "single"
@@ -24,10 +36,6 @@
         "semi": [
             "error",
             "always"
-        ],
-        "no-console": [
-            "error", 
-            { "allow": ["log", "error"] }
         ]
     }
 }

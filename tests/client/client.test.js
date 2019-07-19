@@ -27,5 +27,5 @@ test('Set/get client member variables', () => {
   // reset
   Client.setPageToken(PAGE_TOKEN);
   Client.setAppToken(APP_TOKEN);
-  Client.setApiVersion('');  
+  Client.setApiVersion('');
 });

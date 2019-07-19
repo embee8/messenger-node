@@ -23,10 +23,10 @@ describe('Person', () => {
           expect(fields.includes(field)).toBeTruthy();
         }
         done();
-      });          
+      });
     });
   });
-  
+
   describe('ID Matching API', () => {
     let ids = [
       {'type': 'PSID', 'id': PSID},
@@ -37,18 +37,18 @@ describe('Person', () => {
       test(`Get PSIDs from ${id.type}`, done => {
         Client.getMatchingPsids(id.id, id.type).then(res => {
           expect(res).toHaveProperty('data');
-          expect(res).toHaveProperty('paging');    
+          expect(res).toHaveProperty('paging');
           done();
-        });          
+        });
       });
-      
+
       test(`Get ASIDs from ${id.type}`, done => {
         Client.getMatchingAsids(id.id, id.type).then(res => {
           expect(res).toHaveProperty('data');
-          expect(res).toHaveProperty('paging');    
+          expect(res).toHaveProperty('paging');
           done();
-        });          
+        });
       });
     });
   });
-});      
+});

@@ -6,11 +6,11 @@ const Client = require('./util/client-generator');
 describe('Attachment Upload API', () => {
 
   let attachments = [
-    {'type': 'audio', 'source': __dirname + '/assets/radio.mp3'}, 
+    {'type': 'audio', 'source': __dirname + '/assets/radio.mp3'},
     {'type': 'video', 'source': __dirname + '/assets/dog.mov'},
     {'type': 'image', 'source': __dirname + '/assets/dog.jpg'},
     {'type': 'file', 'source': __dirname + '/assets/dog.pdf'},
-    {'type': 'audio', 'source': 'https://github.com/amuramoto/messenger-node/raw/master/tests/client/assets/radio.mp3' }, 
+    {'type': 'audio', 'source': 'https://github.com/amuramoto/messenger-node/raw/master/tests/client/assets/radio.mp3' },
     {'type': 'video', 'source': 'https://github.com/amuramoto/messenger-node/raw/master/tests/client/assets/dog.mov' },
     {'type': 'image', 'source': 'https://github.com/amuramoto/messenger-node/raw/master/tests/client/assets/dog.jpg' },
     {'type': 'file', 'source': 'https://github.com/amuramoto/messenger-node/raw/master/tests/client/assets/dog.pdf' }

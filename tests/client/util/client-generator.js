@@ -8,7 +8,7 @@ function Client () {
     'app_token': APP_TOKEN,
     'graph_api_version': ''
   };
-  return new Messenger.Client(options);  
+  return new Messenger.Client(options);
 }
 
 module.exports = Client();

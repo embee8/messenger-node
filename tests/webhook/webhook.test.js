@@ -29,7 +29,7 @@ process.argv.forEach(arg => {
 });
 
 beforeAll(() => {
-  Webhook = new Messenger.Webhook(webhook_settings);  
+  Webhook = new Messenger.Webhook(webhook_settings);
 });
 
 
@@ -39,7 +39,7 @@ describe('Webhook creation', () => {
   });
 
   test('Get webhook instance', () => {
-    let instance = Webhook.getInstance();  
+    let instance = Webhook.getInstance();
     expect(instance).toBeInstanceOf(Object);
   });
 
@@ -60,7 +60,7 @@ describe('Webhook verification', () => {
     'qs': qs
   };
 
-  test('Send correct token', done => {        
+  test('Send correct token', done => {
     let callback = (err, res, body) => {
       expect(res.statusCode).toEqual(200);
       expect(body).toEqual(qs['hub.challenge']);
@@ -71,7 +71,7 @@ describe('Webhook verification', () => {
     callWebhook(options, callback);
   });
 
-  test('Send wrong token', done => {        
+  test('Send wrong token', done => {
     let callback = (err, res) => {
       expect(res.statusCode).toEqual(403);
       done();
@@ -87,13 +87,13 @@ describe('Emit events', () => {
 
   let options = {'method': 'POST'};
   let event_mocks = webhook_mocks.getAll();
-  for (let name in event_mocks) {    
-    test(`Emit ${name}`, done => {      
+  for (let name in event_mocks) {
+    test(`Emit ${name}`, done => {
       let event_type_arr = name.split('.');
       let event_type = event_type_arr[0];
       let event_subtype = event_type_arr[1];
-      options.json = event_mocks[name];   
-      Webhook.once(event_type, (event) => {            
+      options.json = event_mocks[name];
+      Webhook.once(event_type, (event) => {
         expect(event.type).toEqual(event_type);
         if (event.subtype) expect(event.subtype).toEqual(event_subtype);
         done();
@@ -101,7 +101,7 @@ describe('Emit events', () => {
 
       callWebhook(options, (err, res, body) => {
         expect(body).toEqual('EVENT_RECEIVED');
-        expect(res.statusCode).toEqual(200);        
+        expect(res.statusCode).toEqual(200);
       });
     });
   }
@@ -111,33 +111,33 @@ describe('Emit events', () => {
 test('Validate signed request', () => {
   let request = {
     'tid': '1254459154682919',
-    'thread_type': 'USER_TO_PAGE', 
+    'thread_type': 'USER_TO_PAGE',
     'psid': '1254459154682919',
     'signed_request': 'QDTuYBidQ7pbpxIbPwgsb__nHty2-KuVPfxAFb9P49k.eyJhbGdvcml0aG0iOiJITUFDLVNIQTI1NiIsImlzc3VlZF9hdCI6MTUxNTY0NjM5MiwibWV0YWRhdGEiOm51bGwsInBhZ2VfaWQiOjY4MjQ5ODE3MTk0MzE2NSwicHNpZCI6IjEyNTQ0NTkxNTQ2ODI5MTkiLCJ0aHJlYWRfdHlwZSI6IlVTRVJfVE9fUEFHRSIsInRpZCI6IjEyNTQ0NTkxNTQ2ODI5MTkifQ'
   };
 
   let result = Webhook.validateSignedRequest(request.signed_request);
-  expect(result).toEqual({ 
+  expect(result).toEqual({
     'algorithm': 'HMAC-SHA256',
     'issued_at': 1515646392,
     'metadata': null,
     'page_id': 682498171943165,
     'psid': '1254459154682919',
     'thread_type': 'USER_TO_PAGE',
-    'tid': '1254459154682919' 
-  });  
+    'tid': '1254459154682919'
+  });
 });
 
 test('Stop webhook instance', () => {
   Webhook.stopInstance((err) => {
     expect(err).toEqual(undefined);
-  });  
+  });
 });
 
 function callWebhook (options, callback) {
   let request_options = {
     'uri': `http://127.0.0.1:${Webhook.getPort()}${Webhook.getEndpoint()}`,
-    'method': options.method    
+    'method': options.method
   };
 
   if (options.qs) request_options.qs = options.qs;

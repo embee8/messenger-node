@@ -16,11 +16,11 @@ let generic = {
           'title': 'URL Button',
           'url': 'https://messenger.fb.com/'
         }
-      ]      
+      ]
     }
   ]
 };
-  
+
 let media = {
   'template_type': 'media',
   'elements': [
@@ -30,7 +30,7 @@ let media = {
     }
   ]
 };
-  
+
 let list = {
   'template_type': 'list',
   'top_element_style': 'compact',
@@ -38,7 +38,7 @@ let list = {
     {
       'title': 'Messenger',
       'subtitle': 'Chat',
-      'image_url': 'https://messenger.fb.com/wp-content/uploads/2017/04/messenger-logo.png',          
+      'image_url': 'https://messenger.fb.com/wp-content/uploads/2017/04/messenger-logo.png',
       'buttons': [
         {
           'title': 'View',
@@ -51,16 +51,16 @@ let list = {
     {
       'title': 'Facebook',
       'subtitle': 'Social',
-      'image_url': 'https://messenger.fb.com/wp-content/uploads/2017/04/messenger-logo.png',          
+      'image_url': 'https://messenger.fb.com/wp-content/uploads/2017/04/messenger-logo.png',
     }
   ],
   'buttons': [
     {
       'title': 'Send postback',
       'type': 'postback',
-      'payload': 'payload'            
+      'payload': 'payload'
     }
-  ]  
+  ]
 };
 
 let button = {
@@ -90,8 +90,8 @@ let open_graph = {
           'type':'web_url',
           'url':'https://en.wikipedia.org/wiki/Rickrolling',
           'title':'View More'
-        }              
-      ]      
+        }
+      ]
     }
   ]
 };
@@ -101,9 +101,9 @@ let receipt = {
   'recipient_name':'Customer 1',
   'order_number':'12345678902',
   'currency':'USD',
-  'payment_method':'Visa 2345',        
+  'payment_method':'Visa 2345',
   'order_url':'http://www.yourcompany.com/order?order_id=123456',
-  'timestamp':'1428444852',         
+  'timestamp':'1428444852',
   'address':{
     'street_1':'1 Hacker Way',
     'street_2':'',
@@ -156,7 +156,7 @@ let airline_boardingpass = {
     {
       'passenger_name': 'SMITH/NICOLAS',
       'pnr_number': 'CG4X7U',
-      'seat': '74J',            
+      'seat': '74J',
       'logo_image_url': 'https://www.example.com/en/logo.png',
       'header_image_url': 'https://www.example.com/en/fb/header.png',
       'qr_code': 'M1SMITH/NICOLAS  CG4X7U nawouehgawgnapwi3jfa0wfh',
@@ -213,9 +213,9 @@ let airline_boardingpass = {
 let airline_checkin = {
   'template_type': 'airline_checkin',
   'intro_message': 'Check-in is available now.',
-  'locale': 'en_US',        
+  'locale': 'en_US',
   'pnr_number': 'ABCDEF',
-  'checkin_url': 'https://www.airline.com/check-in',  
+  'checkin_url': 'https://www.airline.com/check-in',
   'flight_info': [
     {
       'flight_number': 'f001',

@@ -15,7 +15,7 @@ describe('Handover Protocol', () => {
     });
   });
 
-  test('Take thread control', done => {    
+  test('Take thread control', done => {
     Client.takeThreadControl(PSID, Metadata).then(res => {
       expect(res).toHaveProperty('success');
       expect(res.success).toEqual(true);

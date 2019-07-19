@@ -39,14 +39,14 @@ const webhook_events = {
   },
   'messaging_postbacks': {
     'postback': {
-      'title': '<TITLE_FOR_THE_CTA>',  
+      'title': '<TITLE_FOR_THE_CTA>',
       'payload': '<USER_DEFINED_PAYLOAD>',
       'referral': {
         'ref': '<USER_DEFINED_REFERRAL_PARAM>',
         'source': '<SHORTLINK>',
         'type': 'OPEN_THREAD',
       }
-    }    
+    }
   },
   'message_deliveries': {
     'delivery': {
@@ -142,11 +142,11 @@ const webhook_events = {
         'provider_type': 'stripe',
         'charge_id': 'ch_18tmdBEoNIH3FPJHa60ep123',
         'fb_payment_id': '123456789',
-      },      
+      },
       'amount': {
         'currency': 'USD',
         'amount': '29.62'
-      }, 
+      },
       'shipping_option_id': '123'
     }
   },
@@ -174,7 +174,7 @@ const webhook_events = {
       'amount':{
         'currency':'USD',
         'amount':'2.70',
-      }     
+      }
     }
   },
   'messaging_referrals.SHORTLINK': {
@@ -204,19 +204,19 @@ const webhook_events = {
       'source': 'DISCOVER_TAB',
       'type': 'OPEN_THREAD',
     }
-  } 
+  }
 };
 
 function get (type, subtype) {
   return buildEventPayload(type, subtype);
 }
 
-function getAll () {  
+function getAll () {
   let events = {};
-  for (let key in webhook_events) {    
+  for (let key in webhook_events) {
     let key_arr = key.split('.');
     let type = key_arr[0];
-    let subtype = key_arr[1] ? key_arr[1]: '';    
+    let subtype = key_arr[1] ? key_arr[1]: '';
     events[key] = buildEventPayload(type, subtype);
   }
   return events;
@@ -243,7 +243,7 @@ function buildEventPayload (type, subtype) {
     };
   }
   return event;
-} 
+}
 
 module.exports = {
   get,
