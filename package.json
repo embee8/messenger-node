@@ -13,16 +13,14 @@
     "url": "https://github.com/amuramoto/messenger-node.git"
   },
   "dependencies": {
-    "express": "^4.16.2",
-    "request": "^2.83.0"
+    "express": "^4.17.1",
+    "request": "^2.88.0"
   },
   "devDependencies": {
-    "babel-eslint": "^7.2.3",
     "documentation": "^12.0.2",
-    "eslint": "^4.1.1",
-    "eslint-config-google": "^0.9.1",
-    "jest": "^22.0.5",
-    "uglify-es": "^3.3.7"
+    "eslint": "^6.0.1",
+    "jest": "^24.8.0",
+    "uglify-es": "^3.3.9"
   },
   "jest": {
     "verbose": true,
@@ -46,7 +44,7 @@
   "scripts": {
     "prepare": "npm run docs && npm run lint",
     "docs": "rm README.md && for x in docs/overview.md docs/webhook.md docs/client.md; do cat $x >> README.md; echo \"\n\n\" >> README.md; done && echo \"## Reference\" >> README.md && documentation build lib/** -f md >> README.md",
-    "lint": "eslint client/** webhook/** tests/**",
+    "lint": "eslint lib/** tests/**",
     "test": "jest",
     "uglify": "uglifyjs lib/client/index.js lib/client/**/*.js lib/webhook/*.js -c -m --toplevel -o bundle.min.js"
   }
