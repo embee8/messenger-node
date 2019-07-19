@@ -1,5 +1,7 @@
 'use strict';
 
+require('dotenv').config();
+
 const Client = require('./util/client-generator');
 
 /* ATTACHMENT UPLOAD API TESTS */

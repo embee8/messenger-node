@@ -1,5 +1,7 @@
 'use strict';
 
+require('dotenv').config();
+
 const PSID = process.env.TEST_PSID,
       ASID = process.env.TEST_ASID,
       Client = require('./util/client-generator');

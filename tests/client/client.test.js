@@ -1,5 +1,7 @@
 'use strict';
 
+require('dotenv').config();
+
 const Messenger = require('../../lib/index.js'),
       PAGE_TOKEN = process.env.TEST_PAGE_TOKEN,
       APP_TOKEN = process.env.TEST_APP_TOKEN;

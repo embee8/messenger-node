@@ -1,5 +1,7 @@
 'use strict';
 
+require('dotenv').config();
+
 const template_mocks = require('./util/template_mocks'),
       PSID = process.env.TEST_PSID,
       Client = require('./util/client-generator');

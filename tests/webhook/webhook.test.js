@@ -1,5 +1,7 @@
 'use strict';
 
+require('dotenv').config();
+
 const Messenger = require('../../lib/index.js'),
       app_secret = process.env.TEST_APP_SECRET,
       request = require('request'),

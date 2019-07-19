@@ -1,5 +1,7 @@
 'use strict';
 
+require('dotenv').config();
+
 const Client = require('./util/client-generator');
 
 describe('Built-in NLP', () => {

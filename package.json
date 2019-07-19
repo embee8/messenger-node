@@ -13,6 +13,7 @@
     "url": "https://github.com/amuramoto/messenger-node.git"
   },
   "dependencies": {
+    "dotenv": "^8.0.0",
     "express": "^4.17.1",
     "request": "^2.88.0"
   },
