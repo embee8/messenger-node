@@ -18,7 +18,6 @@ describe('Person', () => {
         'locale',
         'timezone',
         'gender',
-        'last_ad_referral'
       ];
       Client.getUserProfile(PSID, fields).then(res => {
         for (let field in res) {
