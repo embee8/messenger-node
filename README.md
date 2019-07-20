@@ -1,6 +1,8 @@
 # Messenger Platform Node.js SDK
 
-[![Build Status](https://travis-ci.org/amuramoto/messenger-node.svg?branch=master)](https://travis-ci.org/amuramoto/messenger-node) * Build is failing right now because one of my test accounts got permissions revoked or something, but the SDK still works as expected
+[![Build Status](https://travis-ci.org/amuramoto/messenger-node.svg?branch=master)](https://travis-ci.org/amuramoto/messenger-node)
+
+(Build is currently failing on Travis due to permission issues but the SDK still works as expected)
 
 The `messenger-node` module is a server-side SDK for building bots on Facebook's [Messenger Platform](https://developers.facebook.com/docs/messenger-platform/). The SDK includes two base classes:
 
@@ -342,35 +344,46 @@ The SDK does not transform the API response in any way, other than ensuring you 
     -   [getUserProfile][111]
         -   [Parameters][112]
         -   [Examples][113]
--   [Webhook][114]
-    -   [Parameters][115]
-    -   [Examples][116]
-    -   [on][117]
+    -   [createPersona][114]
+        -   [Parameters][115]
+        -   [Examples][116]
+    -   [getPersona][117]
         -   [Parameters][118]
         -   [Examples][119]
-    -   [once][120]
-        -   [Parameters][121]
-        -   [Examples][122]
-    -   [emit][123]
-        -   [Parameters][124]
-        -   [Examples][125]
-    -   [getInstance][126]
-        -   [Examples][127]
-    -   [stopInstance][128]
+    -   [getAllPersonas][120]
+        -   [Examples][121]
+    -   [deletePersona][122]
+        -   [Parameters][123]
+        -   [Examples][124]
+-   [Webhook][125]
+    -   [Parameters][126]
+    -   [Examples][127]
+    -   [on][128]
         -   [Parameters][129]
         -   [Examples][130]
-    -   [getPort][131]
-        -   [Examples][132]
-    -   [getEndpoint][133]
-        -   [Examples][134]
-    -   [getVerifyToken][135]
+    -   [once][131]
+        -   [Parameters][132]
+        -   [Examples][133]
+    -   [emit][134]
+        -   [Parameters][135]
         -   [Examples][136]
-    -   [setAppSecret][137]
-        -   [Parameters][138]
-        -   [Examples][139]
-    -   [validateSignedRequest][140]
-        -   [Parameters][141]
-        -   [Examples][142]
+    -   [getInstance][137]
+        -   [Examples][138]
+    -   [stopInstance][139]
+        -   [Parameters][140]
+        -   [Examples][141]
+    -   [getPort][142]
+        -   [Examples][143]
+    -   [getEndpoint][144]
+        -   [Examples][145]
+    -   [getVerifyToken][146]
+        -   [Examples][147]
+    -   [setAppSecret][148]
+        -   [Parameters][149]
+        -   [Examples][150]
+    -   [validateSignedRequest][151]
+        -   [Parameters][152]
+        -   [Examples][153]
 
 ## Client
 
@@ -378,10 +391,10 @@ Creates an instance of `Client`, used for sending requests to the Messenger Plat
 
 ### Parameters
 
--   `options` **[Object][143]** An object that contains the configuration settings for the `Client`.
-    -   `options.page_token` **[String][144]** A valid Page-scoped access token.
-    -   `options.app_token` **[String][144]** _Optional._ A valid app-scoped access token. Required for ID Matching.
-    -   `options.graph_api_version` **[String][144]** _Optional._ The version of the Graph API to target for all API requests. Defaults to latest. Must be in the format `v2.11`.
+-   `options` **[Object][154]** An object that contains the configuration settings for the `Client`.
+    -   `options.page_token` **[String][155]** A valid Page-scoped access token.
+    -   `options.app_token` **[String][155]** _Optional._ A valid app-scoped access token. Required for ID Matching.
+    -   `options.graph_api_version` **[String][155]** _Optional._ The version of the Graph API to target for all API requests. Defaults to latest. Must be in the format `v2.11`.
 
 ### Examples
 
@@ -395,18 +408,18 @@ let options = {
 const Client = new Messenger.Client(options);
 ```
 
-Returns **[Client][145]** 
+Returns **[Client][156]** 
 
 ### uploadAttachment
 
-Uploads media using the [Attachment Upload API][146].
+Uploads media using the [Attachment Upload API][157].
 
 #### Parameters
 
--   `attachment` **[Object][143]** An object that describes the attachment to send.
-    -   `attachment.type` **[String][144]** The type of asset being upload. Must be `image`, `video`, `audio`, or `file`.
-    -   `attachment.source` **[String][144]** The location of the asset. Must be a valid URL or complete filesystem location.
-    -   `attachment.is_reusable` **[String][144]** **Optional.** Set to `true` to return a reusable attachment ID.
+-   `attachment` **[Object][154]** An object that describes the attachment to send.
+    -   `attachment.type` **[String][155]** The type of asset being upload. Must be `image`, `video`, `audio`, or `file`.
+    -   `attachment.source` **[String][155]** The location of the asset. Must be a valid URL or complete filesystem location.
+    -   `attachment.is_reusable` **[String][155]** **Optional.** Set to `true` to return a reusable attachment ID.
 
 #### Examples
 
@@ -442,7 +455,7 @@ Client.uploadAttachment(attachment)
  });
 ```
 
-Returns **[Promise][147]&lt;[Object][143]>** The API response
+Returns **[Promise][158]&lt;[Object][154]>** The API response
 
 ### setPageToken
 
@@ -451,7 +464,7 @@ Sets a new page token to use for all Page-level requests
 #### Parameters
 
 -   `token`  
--   `page_token` **[string][144]** The new page token
+-   `page_token` **[string][155]** The new page token
 
 #### Examples
 
@@ -462,7 +475,7 @@ Client.setPageToken('sgh084th3t3ht340t34h8t3t940390th34')
  });
 ```
 
-Returns **[string][144]** Updated page token
+Returns **[string][155]** Updated page token
 
 ### getPageToken
 
@@ -477,7 +490,7 @@ Client.getPageToken()
  });
 ```
 
-Returns **[string][144]** Current page token
+Returns **[string][155]** Current page token
 
 ### setAppToken
 
@@ -486,7 +499,7 @@ Sets a new app token to use for all app-level requests
 #### Parameters
 
 -   `token`  
--   `app_token` **[string][144]** The new app token
+-   `app_token` **[string][155]** The new app token
 
 #### Examples
 
@@ -497,7 +510,7 @@ Client.setAppToken('9h03t9h0ahtg409thw3t34h8t3t940390th34')
  });
 ```
 
-Returns **[string][144]** Updated app token
+Returns **[string][155]** Updated app token
 
 ### getAppToken
 
@@ -512,7 +525,7 @@ Client.getAppToken()
  });
 ```
 
-Returns **[string][144]** Current app token
+Returns **[string][155]** Current app token
 
 ### setApiVersion
 
@@ -520,7 +533,7 @@ Sets a new Graph API version to use for all requests
 
 #### Parameters
 
--   `version` **[string][144]** The new version in the format `v2.11`
+-   `version` **[string][155]** The new version in the format `v2.11`
 
 #### Examples
 
@@ -531,7 +544,7 @@ Client.setApiVersion('v2.6')
  });
 ```
 
-Returns **[string][144]** Updated version number
+Returns **[string][155]** Updated version number
 
 ### getApiVersion
 
@@ -546,17 +559,17 @@ Client.getApiVersion()
  });
 ```
 
-Returns **[string][144]** Current Graph API version
+Returns **[string][155]** Current Graph API version
 
 ### passThreadControl
 
-Initiates a new handover protocol [pass thread control][148] event.
+Initiates a new handover protocol [pass thread control][159] event.
 
 #### Parameters
 
 -   `psid` **Integer** The PSID of the user whose thread you want to initiate the pass thread control event for.
 -   `target_app_id` **Integer** _Optional._ The app ID of the app to pass thread control to. Set to `page_inbox` to pass thread control to the Page Inbox.
--   `metadata` **[String][144]** _Optional._ An arbitrary string that will be delivered to the target app with the `messaging_handovers` webhook event.
+-   `metadata` **[String][155]** _Optional._ An arbitrary string that will be delivered to the target app with the `messaging_handovers` webhook event.
 
 #### Examples
 
@@ -570,17 +583,17 @@ Client.passThreadControl(psid, target_app_id, metadata)
   });
 ```
 
-Returns **[Promise][147]** The API response
+Returns **[Promise][158]** The API response
 
 ### takeThreadControl
 
-Initiates a new handover protocol [take thread control][149] event.
+Initiates a new handover protocol [take thread control][160] event.
 This may only be called by the app with the Primary Receiver app role.
 
 #### Parameters
 
 -   `psid` **Integer** The PSID of the user whose thread you want to initiate the take thread control event for.
--   `metadata` **[String][144]** _Optional._ An arbitrary string that will be delivered to the Secondary Receiver app with the `messaging_handovers` webhook event.
+-   `metadata` **[String][155]** _Optional._ An arbitrary string that will be delivered to the Secondary Receiver app with the `messaging_handovers` webhook event.
 
 #### Examples
 
@@ -593,16 +606,16 @@ Client.takeThreadControl(psid, metadata)
   });
 ```
 
-Returns **[Promise][147]** The API response
+Returns **[Promise][158]** The API response
 
 ### requestThreadControl
 
-Initiates a new handover protocol [request thread control][150] event.
+Initiates a new handover protocol [request thread control][161] event.
 
 #### Parameters
 
 -   `psid` **Integer** The PSID of the user whose thread you want to initiate the request thread control event for.
--   `metadata` **[String][144]** _Optional._ An arbitrary string that will be delivered to the Primary Receiver app with the `messaging_handovers` webhook event.
+-   `metadata` **[String][155]** _Optional._ An arbitrary string that will be delivered to the Primary Receiver app with the `messaging_handovers` webhook event.
 
 #### Examples
 
@@ -615,16 +628,16 @@ Client.requestThreadControl(psid, metadata)
   });
 ```
 
-Returns **[Promise][147]** The API response
+Returns **[Promise][158]** The API response
 
 ### getThreadOwner
 
-Retrieves the app ID of the current [thread owner][149].
+Retrieves the app ID of the current [thread owner][160].
 
 #### Parameters
 
 -   `psid` **Integer** The PSID of the user whose thread you want to get the thread owner of.
--   `metadata` **[String][144]** _Optional._ An arbitrary string that will be delivered to the target app with the `messaging_handovers` webhook event.
+-   `metadata` **[String][155]** _Optional._ An arbitrary string that will be delivered to the target app with the `messaging_handovers` webhook event.
 
 #### Examples
 
@@ -643,11 +656,11 @@ Client.getThreadOwner(psid)
   });
 ```
 
-Returns **[Promise][147]** The API response
+Returns **[Promise][158]** The API response
 
 ### getSecondaryReceiverList
 
-Retrieves a list of app ID's of all [Secondary Receivers][151] for the Page.
+Retrieves a list of app ID's of all [Secondary Receivers][162] for the Page.
 
 #### Parameters
 
@@ -675,11 +688,11 @@ Client.getThreadOwner(psid)
   });
 ```
 
-Returns **[Promise][147]** The API response
+Returns **[Promise][158]** The API response
 
 ### sendBroadcast
 
-Sends a new broadcast message via the [Broadcast API][152].
+Sends a new broadcast message via the [Broadcast API][163].
 
 #### Parameters
 
@@ -697,7 +710,7 @@ Client.sendBroadcast(message_creative_id, custom_label_id)
   });
 ```
 
-Returns **[Promise][147]** The API response
+Returns **[Promise][158]** The API response
 
 ### startBroadcastReachEstimation
 
@@ -719,7 +732,7 @@ Client.startBroadcastReachEstimation(custom_label_id)
   });
 ```
 
-Returns **[Promise][147]&lt;[Object][143]>** The API Response
+Returns **[Promise][158]&lt;[Object][154]>** The API Response
 
 ### getBroadcastReachEstimation
 
@@ -740,7 +753,7 @@ Client.getBroadcastReachEstimation(9485676932424)
   });
 ```
 
-Returns **[Promise][147]&lt;[Object][143]>** The API Response
+Returns **[Promise][158]&lt;[Object][154]>** The API Response
 
 ### createCustomLabel
 
@@ -748,7 +761,7 @@ Creates a new custom label.
 
 #### Parameters
 
--   `name` **[String][144]** The name of the custom label.
+-   `name` **[String][155]** The name of the custom label.
 
 #### Examples
 
@@ -759,7 +772,7 @@ Client.createCustomLabel('my_custom_label')
   });
 ```
 
-Returns **[Promise][147]&lt;[Object][143]>** The API response
+Returns **[Promise][158]&lt;[Object][154]>** The API response
 
 ### getCustomLabelById
 
@@ -780,7 +793,7 @@ Client.getCustomLabelById(custom_label_id, fields)
   });
 ```
 
-Returns **[Promise][147]&lt;[Object][143]>** The API response
+Returns **[Promise][158]&lt;[Object][154]>** The API response
 
 ### getCustomLabelsByPsid
 
@@ -811,7 +824,7 @@ Client.getCustomLabelsByPsid(950724069735075)
   });
 ```
 
-Returns **[Promise][147]&lt;[Object][143]>** The API response
+Returns **[Promise][158]&lt;[Object][154]>** The API response
 
 ### getAllCustomLabels
 
@@ -839,7 +852,7 @@ Client.getAllCustomLabels(fields)
   });
 ```
 
-Returns **[Promise][147]&lt;[Object][143]>** The API response
+Returns **[Promise][158]&lt;[Object][154]>** The API response
 
 ### deleteCustomLabel
 
@@ -858,7 +871,7 @@ Client.deleteCustomLabel(094730967209673)
   });
 ```
 
-Returns **[Promise][147]&lt;[Object][143]>** The API response
+Returns **[Promise][158]&lt;[Object][154]>** The API response
 
 ### addPsidtoCustomLabel
 
@@ -880,7 +893,7 @@ Client.addPsidtoCustomLabel(psid, custom_label_id)
   });
 ```
 
-Returns **[Promise][147]&lt;[Object][143]>** The API response
+Returns **[Promise][158]&lt;[Object][154]>** The API response
 
 ### removePsidfromCustomLabel
 
@@ -902,7 +915,7 @@ Client.removePsidfromCustomLabel(psid, custom_label_id)
   });
 ```
 
-Returns **[Promise][147]&lt;[Object][143]>** The API response
+Returns **[Promise][158]&lt;[Object][154]>** The API response
 
 ### createMessageCreative
 
@@ -910,7 +923,7 @@ Creates a new message creative.
 
 #### Parameters
 
--   `message` **[Object][143]** An object that describes the message to send.
+-   `message` **[Object][154]** An object that describes the message to send.
 
 #### Examples
 
@@ -957,17 +970,18 @@ Client.createMessageCreative(message)
   });
 ```
 
-Returns **[Promise][147]&lt;[Object][143]>** The API response
+Returns **[Promise][158]&lt;[Object][154]>** The API response
 
 ### sendText
 
-Sends a text message via the [Send API][153].
+Sends a text message via the [Send API][164].
 
 #### Parameters
 
--   `recipient` **[Object][143]** An object that describes the message recipient in the format: `{<id_type>: <id>}`.
+-   `recipient` **[Object][154]** An object that describes the message recipient in the format: `{<id_type>: <id>}`.
     For example, sends to a PSID would be `{'id': 123456}`, to a phone number \`{'phone_number': '+1 (408) 444-4444'}.
--   `text` **[String][144]** The text to send.
+-   `text` **[String][155]** The text to send.
+-   `persona_id` **[String][155]** **Optional.** The ID of the persona that should send this message.
 
 #### Examples
 
@@ -984,18 +998,19 @@ Client.sendText(text)
   });
 ```
 
-Returns **[Promise][147]&lt;[Object][143]>** The API response
+Returns **[Promise][158]&lt;[Object][154]>** The API response
 
 ### sendQuickReplies
 
-Sends a set of quick reply buttons  via the [Send API][153].
+Sends a set of quick reply buttons  via the [Send API][164].
 
 #### Parameters
 
--   `recipient` **[Object][143]** An object that describes the message recipient in the format: `{<id_type>: <id>}`.
+-   `recipient` **[Object][154]** An object that describes the message recipient in the format: `{<id_type>: <id>}`.
     For example, sends to a PSID would be `{'id': 123456}`, to a phone number \`{'phone_number': '+1 (408) 444-4444'}.
--   `quick_replies` **[Object][143]** An object that describes the quick replies to send. This is the `message.quick_replies` property that would normally be included in a Send API request.
--   `text` **[String][144]** _Optional._ Text message to send with quick replies.
+-   `quick_replies` **[Object][154]** An object that describes the quick replies to send. This is the `message.quick_replies` property that would normally be included in a Send API request.
+-   `text` **[String][155]** _Optional._ Text message to send with quick replies.
+-   `persona_id` **[String][155]** **Optional.** The ID of the persona that should send this message.
 
 #### Examples
 
@@ -1026,20 +1041,21 @@ Client.sendQuickReplies(recipient, quick_replies, text)
   });
 ```
 
-Returns **[Promise][147]&lt;[Object][143]>** The API response
+Returns **[Promise][158]&lt;[Object][154]>** The API response
 
 ### sendAttachment
 
-Sends a standalone attachment, including images, audio, video, and files  via the [Send API][153].
+Sends a standalone attachment, including images, audio, video, and files  via the [Send API][164].
 
 #### Parameters
 
--   `attachment` **[Object][143]** An object that describes the attachment to send.
-    -   `attachment.type` **[String][144]** The type of asset being upload. Must be `image`, `video`, `audio`, or `file`.
-    -   `attachment.source` **[String][144]** The location of the asset. Must be a valid URL or complete filesystem location.
-    -   `attachment.is_reusable` **[String][144]** **Optional.** Set to `true` to return a reusable attachment ID.
--   `recipient` **[Object][143]** An object that describes the message recipient in the format: `{<id_type>: <id>}`.
+-   `attachment` **[Object][154]** An object that describes the attachment to send.
+    -   `attachment.type` **[String][155]** The type of asset being upload. Must be `image`, `video`, `audio`, or `file`.
+    -   `attachment.source` **[String][155]** The location of the asset. Must be a valid URL or complete filesystem location.
+    -   `attachment.is_reusable` **[String][155]** **Optional.** Set to `true` to return a reusable attachment ID.
+-   `recipient` **[Object][154]** An object that describes the message recipient in the format: `{<id_type>: <id>}`.
     For example, sends to a PSID would be `{'id': 123456}`, to a phone number \`{'phone_number': '+1 (408) 444-4444'}.
+-   `persona_id` **[String][155]** **Optional.** The ID of the persona that should send this attachment.
 
 #### Examples
 
@@ -1053,7 +1069,7 @@ let recipient = {'id': '57024957309673'},
        'source':'https://www.example.com/dog.png', 
        'is_reusable':true           
     }
-Client.sendAttachment(attachment, recipient)
+Client.sendAttachment(attachment, recipient, persona_id)
   .then(res => {
     console.log(res); // {"id": "9485676932424"}
     // {
@@ -1086,17 +1102,18 @@ Client.uploadAttachment(attachment, recipient)
  });
 ```
 
-Returns **[Promise][147]&lt;[Object][143]>** The API response
+Returns **[Promise][158]&lt;[Object][154]>** The API response
 
 ### sendTemplate
 
-Sends a template message via the [Send API][153].
+Sends a template message via the [Send API][164].
 
 #### Parameters
 
--   `recipient` **[Object][143]** An object that describes the message recipient in the format: `{<id_type>: <id>}`.
+-   `recipient` **[Object][154]** An object that describes the message recipient in the format: `{<id_type>: <id>}`.
     For example, sends to a PSID would be `{'id': 123456}`, to a phone number \`{'phone_number': '+1 (408) 444-4444'}.
--   `template` **[Object][143]** An object that describes the template to send. This is the `message.attachment.payload` property that would normally be included in a Send API request.
+-   `template` **[Object][154]** An object that describes the template to send. This is the `message.attachment.payload` property that would normally be included in a Send API request.
+-   `persona_id` **[String][155]** **Optional.** The ID of the persona that should send this template.
 
 #### Examples
 
@@ -1168,17 +1185,18 @@ Client.sendTemplate(message)
   });
 ```
 
-Returns **[Promise][147]&lt;[Object][143]>** The API response
+Returns **[Promise][158]&lt;[Object][154]>** The API response
 
 ### sendSenderAction
 
-Sends a sender action via the [Send API][153].
+Sends a sender action via the [Send API][164].
 
 #### Parameters
 
--   `recipient` **[Object][143]** An object that describes the message recipient in the format: `{<id_type>: <id>}`.
+-   `recipient` **[Object][154]** An object that describes the message recipient in the format: `{<id_type>: <id>}`.
     For example, sends to a PSID would be `{'id': 123456}`, to a phone number \`{'phone_number': '+1 (408) 444-4444'}.
--   `sender_action` **[String][144]** The sender action to send. Must be `typing_on`, `typing_off`, or `mark_seen`.
+-   `sender_action` **[String][155]** The sender action to send. Must be `typing_on`, `typing_off`, or `mark_seen`.
+-   `persona_id` **[String][155]** **Optional.** The ID of the persona that should send this sender action.
 
 #### Examples
 
@@ -1191,20 +1209,20 @@ Client.sendSenderAction(recipient, sender_action)
   });
 ```
 
-Returns **[Promise][147]&lt;[Object][143]>** The API response
+Returns **[Promise][158]&lt;[Object][154]>** The API response
 
 ### sendSponsoredMessage
 
-Sends a new [Sponsored Message via the Messenger Platform][154].
+Sends a new [Sponsored Message via the Messenger Platform][165].
 
 #### Parameters
 
 -   `ad_account_id` **Integer** Your Facebook Ads account ID.
--   `options` **[Object][143]** An object that describes the sponsored message to send.
-    -   `options.message_creative_id` **[String][144]** The ID of a message creative to send. Created by calling [Client.createMessageCreative()][66].
-    -   `options.daily_budget` **[String][144]** The maximum daily budget of the ad campaign for the Sponsored Message send.
-    -   `options.bid_amount` **[String][144]** The maximum bid for each message recipient.
-    -   `options.targeting` **[String][144]** [Targeting spec][155] for the Sponsored Message send.
+-   `options` **[Object][154]** An object that describes the sponsored message to send.
+    -   `options.message_creative_id` **[String][155]** The ID of a message creative to send. Created by calling [Client.createMessageCreative()][66].
+    -   `options.daily_budget` **[String][155]** The maximum daily budget of the ad campaign for the Sponsored Message send.
+    -   `options.bid_amount` **[String][155]** The maximum bid for each message recipient.
+    -   `options.targeting` **[String][155]** [Targeting spec][166] for the Sponsored Message send.
 
 #### Examples
 
@@ -1227,18 +1245,18 @@ Client.sendSponsoredMessage('test', options)
   });
 ```
 
-Returns **[Promise][147]&lt;[Object][143]>** The API response
+Returns **[Promise][158]&lt;[Object][154]>** The API response
 
 ### getMessagingInsights
 
-Retrieves metrics from the [Messaging Insights API][156].
+Retrieves metrics from the [Messaging Insights API][167].
 
 #### Parameters
 
--   `options` **[Object][143]** An object that describes the metrics data to retrieve.
-    -   `options.metrics` **[Array][157]&lt;[String][144]>** An array list of the metrics to retrieve.
-    -   `options.since` **[String][144]** _Optional._ UNIX timestamp of the start time to get the metric for.
-    -   `options.until` **[String][144]** _Optional._ UNIX timestamp of the end time to get the metric for.
+-   `options` **[Object][154]** An object that describes the metrics data to retrieve.
+    -   `options.metrics` **[Array][168]&lt;[String][155]>** An array list of the metrics to retrieve.
+    -   `options.since` **[String][155]** _Optional._ UNIX timestamp of the start time to get the metric for.
+    -   `options.until` **[String][155]** _Optional._ UNIX timestamp of the end time to get the metric for.
 
 #### Examples
 
@@ -1278,17 +1296,17 @@ Client.getMessagingInsights(options)
   });
 ```
 
-Returns **[Promise][147]&lt;[Object][143]>** The API response
+Returns **[Promise][158]&lt;[Object][154]>** The API response
 
 ### generateMessengerCode
 
-Generate a new static or parametric [Messenger Code][158] for your bot.
+Generate a new static or parametric [Messenger Code][169] for your bot.
 
 #### Parameters
 
--   `options` **[Object][143]** An object that describes the Messenger Code to generate.
+-   `options` **[Object][154]** An object that describes the Messenger Code to generate.
     -   `options.ref` **Integer** The ref string to pass to your bot is opened via the code. Max 250 characters. Valid characters: `a-z A-Z 0-9 +/=-.:_`.
-    -   `options.image_size` **[Object][143]** The size, in pixels, for the image you are requesting. Supported range: 100-2000. Defaults to 1000.
+    -   `options.image_size` **[Object][154]** The size, in pixels, for the image you are requesting. Supported range: 100-2000. Defaults to 1000.
 
 #### Examples
 
@@ -1303,15 +1321,15 @@ Client.generateMessengerCode(options)
   });
 ```
 
-Returns **[Promise][147]&lt;[Object][143]>** The API response
+Returns **[Promise][158]&lt;[Object][154]>** The API response
 
 ### setMessengerProfile
 
-Sets one or more properties of your bot's [Messenger Profile][159].
+Sets one or more properties of your bot's [Messenger Profile][170].
 
 #### Parameters
 
--   `fields` **[Object][143]** An object that contains the Messenger Profile properties to set as key-value pairs.
+-   `fields` **[Object][154]** An object that contains the Messenger Profile properties to set as key-value pairs.
 
 #### Examples
 
@@ -1337,15 +1355,15 @@ Client.setMessengerProfile(fields)
   });
 ```
 
-Returns **[Promise][147]&lt;[Object][143]>** The API response
+Returns **[Promise][158]&lt;[Object][154]>** The API response
 
 ### getMessengerProfile
 
-Retrieves one or more properties of your bot's [Messenger Profile][159].
+Retrieves one or more properties of your bot's [Messenger Profile][170].
 
 #### Parameters
 
--   `fields` **[Array][157]&lt;[String][144]>** _Optional._ An array list of the Messenger Profile filds to retrieve.
+-   `fields` **[Array][168]&lt;[String][155]>** _Optional._ An array list of the Messenger Profile filds to retrieve.
 
 #### Examples
 
@@ -1372,15 +1390,15 @@ Client.getMessengerProfile(fields)
   });
 ```
 
-Returns **[Promise][147]&lt;[Object][143]>** The API response
+Returns **[Promise][158]&lt;[Object][154]>** The API response
 
 ### deleteMessengerProfile
 
-Deletes one or more properties of your bot's [Messenger Profile][159].
+Deletes one or more properties of your bot's [Messenger Profile][170].
 
 #### Parameters
 
--   `fields` **[Array][157]&lt;[String][144]>** _Optional._ An array list of the Messenger Profile filds to delete.
+-   `fields` **[Array][168]&lt;[String][155]>** _Optional._ An array list of the Messenger Profile filds to delete.
 
 #### Examples
 
@@ -1392,15 +1410,15 @@ Client.deleteMessengerProfile(fields)
   });
 ```
 
-Returns **[Promise][147]&lt;[Object][143]>** The API response
+Returns **[Promise][158]&lt;[Object][154]>** The API response
 
 ### setNlpConfigs
 
-Sets config values for [built-in NLP]\([https://developers.facebook.com/docs/messenger-platform/built-in-nlp][160].
+Sets config values for [built-in NLP]\([https://developers.facebook.com/docs/messenger-platform/built-in-nlp][171].
 
 #### Parameters
 
--   `configs` **[Object][143]** The NLP configs to set
+-   `configs` **[Object][154]** The NLP configs to set
 
 #### Examples
 
@@ -1418,26 +1436,26 @@ Client.setNlpConfigs(configs).then(res => {
  });
 ```
 
-Returns **[String][144]** configs.nlp_enabled  Enable/disable built-in NLP. Must be `true` or `false`
+Returns **[String][155]** configs.nlp_enabled  Enable/disable built-in NLP. Must be `true` or `false`
 
-Returns **[String][144]** configs.model  The default NLP model to use. For values, see the [Messenger Platform docs][161].
+Returns **[String][155]** configs.model  The default NLP model to use. For values, see the [Messenger Platform docs][172].
 
-Returns **[String][144]** configs.custom_token  [Wit.ai][162] server token for integrating a custom model.
+Returns **[String][155]** configs.custom_token  [Wit.ai][173] server token for integrating a custom model.
 
-Returns **[String][144]** configs.verbose  Enables verbose mode, which returns extra information like the position of the detected entity in the query. Must be `true` or `false`.
+Returns **[String][155]** configs.verbose  Enables verbose mode, which returns extra information like the position of the detected entity in the query. Must be `true` or `false`.
 
-Returns **[String][144]** configs.n_best  The number of entities to return, in descending order of confidence. Minimum 1. Maximum 8.
+Returns **[String][155]** configs.n_best  The number of entities to return, in descending order of confidence. Minimum 1. Maximum 8.
 
 ### getMatchingPsids
 
 Returns all Page-scoped IDs (PSIDs) for a user across all Pages in the same 
 Facebook Business Manager account. Matches can be found using 
-a PSID or ASID. Uses the [ID Matching API][163].
+a PSID or ASID. Uses the [ID Matching API][174].
 
 #### Parameters
 
--   `id` **[String][144]** A valid ASID or PSID.
--   `id_type` **[String][144]** The type of ID provided in the `id` argument: `ASID` or `PSID`.
+-   `id` **[String][155]** A valid ASID or PSID.
+-   `id_type` **[String][155]** The type of ID provided in the `id` argument: `ASID` or `PSID`.
 
 #### Examples
 
@@ -1472,18 +1490,18 @@ Client.getMatchingPsids('95740976304764', 'PSID')
   });
 ```
 
-Returns **[Promise][147]&lt;[Object][143]>** The API response
+Returns **[Promise][158]&lt;[Object][154]>** The API response
 
 ### getMatchingAsids
 
 Returns all app-scoped IDs (ASIDs) for a user across all Pages in the same 
 Facebook Business Manager account. Matches can be found using 
-a PSID or ASID. Uses the [ID Matching API][163].
+a PSID or ASID. Uses the [ID Matching API][174].
 
 #### Parameters
 
--   `id` **[String][144]** A valid ASID or PSID.
--   `id_type` **[String][144]** The type of ID provided in the `id` argument: `ASID` or `PSID`.
+-   `id` **[String][155]** A valid ASID or PSID.
+-   `id_type` **[String][155]** The type of ID provided in the `id` argument: `ASID` or `PSID`.
 
 #### Examples
 
@@ -1520,16 +1538,16 @@ Client.getMatchingAsids('95740976304764', 'PSID')
   });
 ```
 
-Returns **[Promise][147]&lt;[Object][143]>** The API response
+Returns **[Promise][158]&lt;[Object][154]>** The API response
 
 ### getUserProfile
 
-Retrieves a user's profile via the [User Profile API][164].
+Retrieves a user's profile via the [User Profile API][175].
 
 #### Parameters
 
 -   `psid` **Integer** A valid user PSID.
--   `fields` **[Array][157]&lt;[String][144]>** _Optional._ An array list of the user profile filds to retrieve. For a list of available fields, see the [Messenger Platform docs][165].
+-   `fields` **[Array][168]&lt;[String][155]>** _Optional._ An array list of the user profile filds to retrieve. For a list of available fields, see the [Messenger Platform docs][176].
 
 #### Examples
 
@@ -1553,7 +1571,111 @@ Client.getUserProfile('490730697356', profile_fields)
   });
 ```
 
-Returns **[Promise][147]&lt;[Object][143]>** The API response
+Returns **[Promise][158]&lt;[Object][154]>** The API response
+
+### createPersona
+
+Creates a new [persona][177].
+
+#### Parameters
+
+-   `name` **Integer** The display name of the persona.
+-   `profile_picture_url` **Integer** The URL of the user icon associated with the persona.
+
+#### Examples
+
+```javascript
+let name = 'John Mathew',
+    profile_picture_url = 'https://facebook.com/john_image.jpg';
+Client.createPersona(name, profile_picture_url)
+  .then(res => {
+    console.log(res); // { "id": "<PERSONA_ID>" }
+  });
+```
+
+Returns **[Promise][158]** The API response
+
+### getPersona
+
+Retrieves the ID, name, and profile picture of a persona.
+
+#### Parameters
+
+-   `persona_id` **Integer** The ID of a persona. Created with [createPersona()][178].
+
+#### Examples
+
+```javascript
+let persona_id = 123456789;
+Client.getPersona(persona_id)
+ .then(res => {
+   console.log(res);
+     // {
+     //   "name": "John Mathew",
+     //   "profile_picture_url": "https://facebook.com/john_image.jpg",
+     //   "id": "123456789"
+     // }
+  });
+```
+
+Returns **[Promise][158]&lt;[Object][154]>** The API response
+
+### getAllPersonas
+
+Retrieves the list of all [personas][177].
+
+#### Examples
+
+```javascript
+Client.getAllPersonas()
+ .then(res => {
+   console.log(res);
+   // {
+   //   "data": [
+   //     {
+   //       "name": "John Mathew",
+   //       "profile_picture_url": "https://facebook.com/john_image.jpg",
+   //       "id": "<PERSONA_ID>"
+   //     },
+   //     {
+   //       "name": "David Mark",
+   //       "profile_picture_url": "https://facebook.com/david_image.jpg",
+   //       "id": "<PERSONA_ID>"
+   //     },
+   //   ],
+   //   "paging": {
+   //     "cursors": {
+   //       "before": "QVFIUlMtR2ZATQlRtVUZALUlloV1",
+   //       "after": "QVFIUkpnMGx0aTNvUjJNVmJUT0Yw"
+   //     }
+   //   }
+   // }
+ });
+```
+
+Returns **[Promise][158]** The API response
+
+### deletePersona
+
+Deletes a [persona][177].
+
+#### Parameters
+
+-   `persona_id` **Integer** The ID of the persona to delete.
+
+#### Examples
+
+```javascript
+Client.deletePersona(123456789)
+ .then(res => {
+   console.log(res);
+   // {
+   //   "success": true
+   // }
+ });
+```
+
+Returns **[Promise][158]** The API response
 
 ## Webhook
 
@@ -1561,11 +1683,11 @@ Creates and starts a webhook that emits all received webhook events.
 
 ### Parameters
 
--   `options` **[Object][143]** Configuration options for your webhook. All options may also be set as environment variables.
-    -   `options.verify_token` **[string][144]** May also be set as `MESSENGER_VERIFY_TOKEN` in environment variables.
-    -   `options.endpoint` **[string][144]** _Optional._ Defaults to `/webhook`. May also be set as `MESSENGER_APP_ENDPOINT` in environment variables.
-    -   `options.app_secret` **[string][144]** _Optional._ Your app secret. Required for `validateSignedRequest()`. May also be set as `MESSENGER_APP_SECRET` in environment variables.
-    -   `options.port` **[string][144]** _Optional._ Defaults to `1337`. May also be set as `MESSENGER_PORT` in environment variables.
+-   `options` **[Object][154]** Configuration options for your webhook. All options may also be set as environment variables.
+    -   `options.verify_token` **[string][155]** May also be set as `MESSENGER_VERIFY_TOKEN` in environment variables.
+    -   `options.endpoint` **[string][155]** _Optional._ Defaults to `/webhook`. May also be set as `MESSENGER_APP_ENDPOINT` in environment variables.
+    -   `options.app_secret` **[string][155]** _Optional._ Your app secret. Required for `validateSignedRequest()`. May also be set as `MESSENGER_APP_SECRET` in environment variables.
+    -   `options.port` **[string][155]** _Optional._ Defaults to `1337`. May also be set as `MESSENGER_PORT` in environment variables.
 
 ### Examples
 
@@ -1582,16 +1704,16 @@ let options = {
 const Webhook = new Messenger.Webhook(options);
 ```
 
-Returns **[Webhook][166]** 
+Returns **[Webhook][179]** 
 
 ### on
 
-Adds an event listener. Implements Node.js EventEmitter's [`emitter.on`][167].
+Adds an event listener. Implements Node.js EventEmitter's [`emitter.on`][180].
 
 #### Parameters
 
--   `event_name` **[String][144]** The name of the event to listen for.
--   `callback` **[Function][168]** The callback to execute when the event is received.
+-   `event_name` **[String][155]** The name of the event to listen for.
+-   `callback` **[Function][181]** The callback to execute when the event is received.
 
 #### Examples
 
@@ -1603,12 +1725,12 @@ Webhook.on('messaging_postbacks', (event_type, sender_info, webhook_event) => {
 
 ### once
 
-Adds a one-time event listener that will be removed after it is called once. Implements Node.js EventEmitter's [`emitter.once`][169].
+Adds a one-time event listener that will be removed after it is called once. Implements Node.js EventEmitter's [`emitter.once`][182].
 
 #### Parameters
 
--   `event_name` **[String][144]** The name of the event to listen for.
--   `callback` **[Function][168]** The callback to execute when the event is received.
+-   `event_name` **[String][155]** The name of the event to listen for.
+-   `callback` **[Function][181]** The callback to execute when the event is received.
 
 #### Examples
 
@@ -1620,11 +1742,11 @@ Webhook.once('messaging_postbacks', (event_type, sender_info, webhook_event) => 
 
 ### emit
 
-Emits an event from the Webhook instance. Event listeners can be set with `Webhook.on()` and `Webhook.once()`. Implements Node.js EventEmitter's [`emitter.once`][170].
+Emits an event from the Webhook instance. Event listeners can be set with `Webhook.on()` and `Webhook.once()`. Implements Node.js EventEmitter's [`emitter.once`][183].
 
 #### Parameters
 
--   `eventName` **[Object][143]** The name of the event to emit.
+-   `eventName` **[Object][154]** The name of the event to emit.
 
 #### Examples
 
@@ -1632,11 +1754,11 @@ Emits an event from the Webhook instance. Event listeners can be set with `Webho
 Webhook.emit('my_event', arg1, arg2);
 ```
 
-Returns **[Object][143]** ...args  _Optional._ Arguments to pass to the event listener.
+Returns **[Object][154]** ...args  _Optional._ Arguments to pass to the event listener.
 
 ### getInstance
 
-Retrieves the current Webhook instance. This is the express.js [`app`][171] instance.
+Retrieves the current Webhook instance. This is the express.js [`app`][184] instance.
 
 #### Examples
 
@@ -1645,7 +1767,7 @@ let instance = Webhook.getInstance();
 console.log(instance) // express.js app instance
 ```
 
-Returns **[Object][143]** The Webhook instance.
+Returns **[Object][154]** The Webhook instance.
 
 ### stopInstance
 
@@ -1653,7 +1775,7 @@ Stops the Webhook instance.
 
 #### Parameters
 
--   `callback` **[Function][168]** A callback function to execute when the webhook is stopped.
+-   `callback` **[Function][181]** A callback function to execute when the webhook is stopped.
 
 #### Examples
 
@@ -1672,7 +1794,7 @@ let port = Webhook.getPort();
 console.log(port) // '1337'
 ```
 
-Returns **[String][144]** The current port number.
+Returns **[String][155]** The current port number.
 
 ### getEndpoint
 
@@ -1685,7 +1807,7 @@ let endpoint = Webhook.getEndpoint();
 console.log(endpoint) // '/webhook'
 ```
 
-Returns **[String][144]** The current endpoint.
+Returns **[String][155]** The current endpoint.
 
 ### getVerifyToken
 
@@ -1698,7 +1820,7 @@ let verifyToken = Webhook.getVerifyToken();
 console.log(verifyToken) // 'my_verify_token'
 ```
 
-Returns **[String][144]** The current verify token.
+Returns **[String][155]** The current verify token.
 
 ### setAppSecret
 
@@ -1706,7 +1828,7 @@ Sets the app secret used for validating signed requests.
 
 #### Parameters
 
--   `app_secret` **[String][144]** The app secret to set.
+-   `app_secret` **[String][155]** The app secret to set.
 
 #### Examples
 
@@ -1715,15 +1837,15 @@ let app_secret = Webhook.setAppSecret('hgr0a8h30gh30agh');
 console.log(app_secret) // 'hgr0a8h30gh30agh'
 ```
 
-Returns **[String][144]** The app secret that was successfully set.
+Returns **[String][155]** The app secret that was successfully set.
 
 ### validateSignedRequest
 
-Verifies a signed request received by calling [`getcontext()`][172] in the Messenger webview.
+Verifies a signed request received by calling [`getcontext()`][185] in the Messenger webview.
 
 #### Parameters
 
--   `signed_request` **[Object][143]** The signed request.
+-   `signed_request` **[Object][154]** The signed request.
 
 #### Examples
 
@@ -1747,7 +1869,7 @@ console.log(decrypted_request)
 // }
 ```
 
-Returns **[Object][143]** The decrypted signed request.
+Returns **[Object][154]** The decrypted signed request.
 
 [1]: #client
 
@@ -1975,120 +2097,146 @@ Returns **[Object][143]** The decrypted signed request.
 
 [113]: #examples-38
 
-[114]: #webhook
+[114]: #createpersona
 
 [115]: #parameters-35
 
 [116]: #examples-39
 
-[117]: #on
+[117]: #getpersona
 
 [118]: #parameters-36
 
 [119]: #examples-40
 
-[120]: #once
+[120]: #getallpersonas
 
-[121]: #parameters-37
+[121]: #examples-41
 
-[122]: #examples-41
+[122]: #deletepersona
 
-[123]: #emit
+[123]: #parameters-37
 
-[124]: #parameters-38
+[124]: #examples-42
 
-[125]: #examples-42
+[125]: #webhook
 
-[126]: #getinstance
+[126]: #parameters-38
 
 [127]: #examples-43
 
-[128]: #stopinstance
+[128]: #on
 
 [129]: #parameters-39
 
 [130]: #examples-44
 
-[131]: #getport
+[131]: #once
 
-[132]: #examples-45
+[132]: #parameters-40
 
-[133]: #getendpoint
+[133]: #examples-45
 
-[134]: #examples-46
+[134]: #emit
 
-[135]: #getverifytoken
+[135]: #parameters-41
 
-[136]: #examples-47
+[136]: #examples-46
 
-[137]: #setappsecret
+[137]: #getinstance
 
-[138]: #parameters-40
+[138]: #examples-47
 
-[139]: #examples-48
+[139]: #stopinstance
 
-[140]: #validatesignedrequest
+[140]: #parameters-42
 
-[141]: #parameters-41
+[141]: #examples-48
 
-[142]: #examples-49
+[142]: #getport
 
-[143]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object
+[143]: #examples-49
 
-[144]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String
+[144]: #getendpoint
 
-[145]: #client
+[145]: #examples-50
 
-[146]: https://developers.facebook.com/docs/messenger-platform/reference/attachment-upload-api
+[146]: #getverifytoken
 
-[147]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise
+[147]: #examples-51
 
-[148]: https://developers.facebook.com/docs/messenger-platform/handover-protocol/pass-thread-control
+[148]: #setappsecret
 
-[149]: https://developers.facebook.com/docs/messenger-platform/handover-protocol/take-thread-control
+[149]: #parameters-43
 
-[150]: https://developers.facebook.com/docs/messenger-platform/handover-protocol/request-thread-control
+[150]: #examples-52
 
-[151]: https://developers.facebook.com/docs/messenger-platform/handover-protocol#secondary_receivers_list
+[151]: #validatesignedrequest
 
-[152]: https://developers.facebook.com/docs/messenger-platform/reference/broadcast-api
+[152]: #parameters-44
 
-[153]: https://developers.facebook.com/docs/messenger-platform/reference/send-api
+[153]: #examples-53
 
-[154]: https://developers.facebook.com/docs/messenger-platform/reference/sponsored-messages
+[154]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object
 
-[155]: https://developers.facebook.com/docs/marketing-api/targeting-specs
+[155]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String
 
-[156]: https://developers.facebook.com/docs/messenger-platform/reference/messaging-insights-api
+[156]: #client
 
-[157]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array
+[157]: https://developers.facebook.com/docs/messenger-platform/reference/attachment-upload-api
 
-[158]: https://developers.facebook.com/docs/messenger-platform/reference/messenger-code-api
+[158]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise
 
-[159]: https://developers.facebook.com/docs/messenger-platform/reference/messenger-profile-api
+[159]: https://developers.facebook.com/docs/messenger-platform/handover-protocol/pass-thread-control
 
-[160]: https://developers.facebook.com/docs/messenger-platform/built-in-nlp
+[160]: https://developers.facebook.com/docs/messenger-platform/handover-protocol/take-thread-control
 
-[161]: https://developers.facebook.com/docs/messenger-platform/built-in-nlp#api
+[161]: https://developers.facebook.com/docs/messenger-platform/handover-protocol/request-thread-control
 
-[162]: https://wit.ai/
+[162]: https://developers.facebook.com/docs/messenger-platform/handover-protocol#secondary_receivers_list
 
-[163]: https://developers.facebook.com/docs/messenger-platform/identity/id-matching
+[163]: https://developers.facebook.com/docs/messenger-platform/reference/broadcast-api
 
-[164]: https://developers.facebook.com/docs/messenger-platform/identity/user-profile
+[164]: https://developers.facebook.com/docs/messenger-platform/reference/send-api
 
-[165]: https://developers.facebook.com/docs/messenger-platform/identity/user-profile#fields
+[165]: https://developers.facebook.com/docs/messenger-platform/reference/sponsored-messages
 
-[166]: #webhook
+[166]: https://developers.facebook.com/docs/marketing-api/targeting-specs
 
-[167]: https://nodejs.org/api/events.html#events_emitter_on_eventname_listener
+[167]: https://developers.facebook.com/docs/messenger-platform/reference/messaging-insights-api
 
-[168]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/function
+[168]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array
 
-[169]: https://nodejs.org/api/events.html#events_emitter_once_eventname_listener
+[169]: https://developers.facebook.com/docs/messenger-platform/reference/messenger-code-api
 
-[170]: https://nodejs.org/api/events.html#events_emitter_emit_eventname_args
+[170]: https://developers.facebook.com/docs/messenger-platform/reference/messenger-profile-api
 
-[171]: http://expressjs.com/en/4x/api.html#app
+[171]: https://developers.facebook.com/docs/messenger-platform/built-in-nlp
 
-[172]: https://developers.facebook.com/docs/messenger-platform/webview/context
+[172]: https://developers.facebook.com/docs/messenger-platform/built-in-nlp#api
+
+[173]: https://wit.ai/
+
+[174]: https://developers.facebook.com/docs/messenger-platform/identity/id-matching
+
+[175]: https://developers.facebook.com/docs/messenger-platform/identity/user-profile
+
+[176]: https://developers.facebook.com/docs/messenger-platform/identity/user-profile#fields
+
+[177]: https://developers.facebook.com/docs/messenger-platform/send-messages/personas
+
+[178]: #createPersona
+
+[179]: #webhook
+
+[180]: https://nodejs.org/api/events.html#events_emitter_on_eventname_listener
+
+[181]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/function
+
+[182]: https://nodejs.org/api/events.html#events_emitter_once_eventname_listener
+
+[183]: https://nodejs.org/api/events.html#events_emitter_emit_eventname_args
+
+[184]: http://expressjs.com/en/4x/api.html#app
+
+[185]: https://developers.facebook.com/docs/messenger-platform/webview/context
