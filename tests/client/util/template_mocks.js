@@ -26,7 +26,7 @@ let media = {
   'elements': [
     {
       'media_type': 'image',
-      'url': 'https://www.facebook.com/MessengerPlatform/photos/a.1534851423476297.1073741827.1534848353476604/1754854618142642/'
+      'url': 'https://www.facebook.com/MessengerPlatform/photos/a.1913522322275870/1913522195609216'
     }
   ]
 };

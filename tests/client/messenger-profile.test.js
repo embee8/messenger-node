@@ -80,6 +80,7 @@ describe('Messenger Profile API', () => {
   });
 
   test('Delete profile fields', done => {
+    jest.setTimeout(15000);
     Client.deleteMessengerProfile(fields_arr).then(res => {
       expect(res).toHaveProperty('result');
       expect(res.result).toEqual('success');

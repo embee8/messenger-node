@@ -3,32 +3,17 @@
 require('dotenv').config();
 
 const Messenger = require('../../lib/index.js'),
-      app_secret = process.env.TEST_APP_SECRET,
+      app_secret = process.env.MESSENGER_APP_SECRET,
       request = require('request'),
       webhook_mocks = require('./webhook-event-mocks'),
       webhook_settings = {
-        'verify_token': 'token',
-        'app_secret': app_secret,
+        'verify_token': process.env.MESSENGER_VERIFY_TOKEN,
+        'app_secret': process.env.MESSENGER_APP_SECRET,
+        // port: '',
+        // endpoint: '',
       };
 
 let Webhook;
-
-process.argv.forEach(arg => {
-  let kv = arg.split('=');
-  switch (kv[0]) {
-    case 'verify_token':
-      webhook_settings.verify_token = kv[1];
-      break;
-
-    case 'port':
-      webhook_settings.port = kv[1];
-      break;
-
-    case 'endpoint':
-      webhook_settings.endpoint = kv[1];
-      break;
-  }
-});
 
 beforeAll(() => {
   Webhook = new Messenger.Webhook(webhook_settings);

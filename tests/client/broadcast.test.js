@@ -16,8 +16,9 @@ describe('Broadcast Message', () => {
     ];
 
   describe('Custom labels - creation', () => {
+    const label_name = `sdk_test_label_${Date.now()}`;
     test('Create label', done => {
-      Client.createCustomLabel('sdk_test_label').then(res => {
+      Client.createCustomLabel(label_name).then(res => {
         expect(res).toHaveProperty('id');
         custom_label = res.id;
         done();
@@ -29,7 +30,7 @@ describe('Broadcast Message', () => {
         expect(res).toHaveProperty('id');
         expect(res).toHaveProperty('name');
         expect(res.id).toEqual(custom_label);
-        expect(res.name).toEqual('sdk_test_label');
+        expect(res.name).toEqual(label_name);
         done();
       });
     });
@@ -74,9 +75,10 @@ describe('Broadcast Message', () => {
 
   describe('Broadcast API', () => {
 
-    for(let i = 0; i < 2; i++) {
+    for (let i = 0; i < 2; i++) {
       let test_type = i === 0 ? 'all broadcasts' : 'targetted broadcast';
       test(`Start reach estimation for ${test_type}`, done => {
+        jest.setTimeout(15000);
         let label = i === 0 ? null : custom_label;
         Client.startBroadcastReachEstimation(label).then(res => {
           expect(res).toHaveProperty('reach_estimation_id');
